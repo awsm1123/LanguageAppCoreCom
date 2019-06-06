@@ -58,8 +58,7 @@ public class UploadFragment extends Fragment {
     ProgressBar UploadProgress;
     @BindView(R.id.tvUploadStatus)
     TextView tvUploadStatus;
-    @BindView(R.id.tvViewUploads)
-    TextView tvViewUploads;
+
     Unbinder unbinder;
 
     public UploadFragment() {
@@ -109,14 +108,11 @@ public class UploadFragment extends Fragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.btUpload, R.id.tvViewUploads})
+    @OnClick({R.id.btUpload})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btUpload:
                 getPDFS();
-                break;
-            case R.id.tvViewUploads:
-                startActivity(new Intent(getContext(), ViewUploads.class));
                 break;
         }
     }

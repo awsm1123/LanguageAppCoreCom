@@ -5,10 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".ArchiveFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ListView
+        android:id="@+id/lvUploads"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Archive" />
+        android:layout_height="wrap_content"
+        android:padding="10dp"/>
 
 </FrameLayout>

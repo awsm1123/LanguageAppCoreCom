@@ -34,11 +34,4 @@
         android:layout_height="wrap_content"
         android:text="Upload Status"/>
 
-    <TextView
-        android:id="@+id/tvViewUploads"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="View Uploads"
-        android:padding="10dp"/>
-
 </LinearLayout>
