@@ -53,7 +53,7 @@ public class ArchiveFragment extends Fragment {
 
         lvUploads.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view2, int position, long id) {
                 Upload upload = uploadList.get(position);
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(upload.getUrl()));
@@ -78,8 +78,11 @@ public class ArchiveFragment extends Fragment {
                 }
 
                 //displaying it to list
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, uploads);
-                lvUploads.setAdapter(adapter);
+
+                if(getActivity()!=null){
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, uploads);
+                    lvUploads.setAdapter(adapter);
+                }
             }
 
             @Override

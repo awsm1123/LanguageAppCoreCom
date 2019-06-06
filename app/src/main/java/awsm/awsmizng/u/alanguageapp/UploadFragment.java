@@ -49,6 +49,8 @@ import static android.app.Activity.RESULT_OK;
 public class UploadFragment extends Fragment {
     StorageReference storageReference;
     DatabaseReference databaseReference;
+    public static String fileName;
+
 
     @BindView(R.id.etFileName)
     TextInputEditText etFileName;
@@ -112,6 +114,7 @@ public class UploadFragment extends Fragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btUpload:
+                fileName = etFileName.getText().toString();
                 getPDFS();
                 break;
         }
@@ -146,23 +149,23 @@ public class UploadFragment extends Fragment {
         etFileName.setVisibility(View.GONE);
         btUpload.setVisibility(View.GONE);
 
-        StorageReference sRef = storageReference.child(Constants.STORAGE_PATH_UPLOADS + etFileName.getText().toString() + UUID.randomUUID() + ".pdf");
+        StorageReference sRef = storageReference.child(Constants.STORAGE_PATH_UPLOADS + fileName + UUID.randomUUID() + ".pdf");
         sRef.putFile(data)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @SuppressWarnings("VisibleForTests")
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        TransitionManager.beginDelayedTransition(transitionsContainer);
-                        readyUIforInput();
-                        tvUploadStatus.setText("File Uploaded Successfully");
-
                         taskSnapshot.getMetadata().getReference().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
-                                Upload upload = new Upload(etFileName.getText().toString(), uri.toString());
+                                Upload upload = new Upload(fileName, uri.toString());
                                 databaseReference.child(databaseReference.push().getKey()).setValue(upload);
                             }
                         });
+
+                        TransitionManager.beginDelayedTransition(transitionsContainer);
+                        readyUIforInput();
+                        tvUploadStatus.setText("File Uploaded Successfully");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
