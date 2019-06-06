@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/upload"
+        android:enabled="true"
+        android:title="Upload"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/archive"
+        android:enabled="true"
+        android:title="Archive"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/profile"
+        android:enabled="true"
+        android:title="Profile"
+        app:showAsAction="always" />
+        <!--android:icon="@drawable/ic_action_nearby"-->
+
+</menu>
