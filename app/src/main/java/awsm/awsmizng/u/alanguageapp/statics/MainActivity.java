@@ -1,4 +1,4 @@
-package awsm.awsmizng.u.alanguageapp;
+package awsm.awsmizng.u.alanguageapp.statics;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -12,9 +12,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import butterknife.BindView;
+import awsm.awsmizng.u.alanguageapp.ArchiveFragment;
+import awsm.awsmizng.u.alanguageapp.ProfileFragment;
+import awsm.awsmizng.u.alanguageapp.R;
+import awsm.awsmizng.u.alanguageapp.UploadFragment;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {

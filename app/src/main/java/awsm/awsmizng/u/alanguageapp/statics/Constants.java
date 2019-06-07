@@ -1,4 +1,4 @@
-package awsm.awsmizng.u.alanguageapp;
+package awsm.awsmizng.u.alanguageapp.statics;
 
 public class Constants {
     public static final String STORAGE_PATH_UPLOADS = "uploads/";

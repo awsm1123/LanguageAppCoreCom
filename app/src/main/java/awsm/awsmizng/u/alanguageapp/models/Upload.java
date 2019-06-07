@@ -1,4 +1,4 @@
-package awsm.awsmizng.u.alanguageapp;
+package awsm.awsmizng.u.alanguageapp.models;
 
 public class Upload {
     public String name;

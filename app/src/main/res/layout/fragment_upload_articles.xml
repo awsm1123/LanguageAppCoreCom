@@ -3,13 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ArchiveFragment">
+    tools:context=".UploadArticlesFragment">
 
-    <ListView
-        android:id="@+id/lvUploads"
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:background="#7FFFFFFF"/>
+        android:layout_height="match_parent"
+        android:text="@string/hello_blank_fragment" />
 
 </FrameLayout>

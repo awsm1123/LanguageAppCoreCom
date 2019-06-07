@@ -7,6 +7,9 @@
 
     <color name="button_background_light">#ff839d</color>
     <color name="button_background_dark">#ff839d</color>
+
+    <color name="button_background_deselcetd_dark">#aaaaaa</color>
+    <color name="button_background_deselcetd_light">#A3a3a3</color>
 </resources>
 
 

@@ -1,26 +1,24 @@
 package awsm.awsmizng.u.alanguageapp;
 
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
-import android.support.v4.app.ActivityCompat;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.transition.TransitionManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +33,8 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.UUID;
 
+import awsm.awsmizng.u.alanguageapp.models.Upload;
+import awsm.awsmizng.u.alanguageapp.statics.Constants;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -62,6 +62,10 @@ public class UploadFragment extends Fragment {
     TextView tvUploadStatus;
 
     Unbinder unbinder;
+    @BindView(R.id.etContainer)
+    TextInputLayout etContainer;
+    @BindView(R.id.spinner)
+    Spinner spinner;
 
     public UploadFragment() {
         // Required empty public constructor
@@ -98,6 +102,19 @@ public class UploadFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+               //TODO get items from here
+                // Toast.makeText(getContext(), parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
@@ -146,6 +163,7 @@ public class UploadFragment extends Fragment {
 
         TransitionManager.beginDelayedTransition(transitionsContainer);
         UploadProgress.setVisibility(View.VISIBLE);
+        etContainer.setVisibility(View.GONE);
         etFileName.setVisibility(View.GONE);
         btUpload.setVisibility(View.GONE);
 
@@ -186,9 +204,10 @@ public class UploadFragment extends Fragment {
 
     }
 
-    private void readyUIforInput(){
+    private void readyUIforInput() {
         UploadProgress.setVisibility(View.GONE);
         etFileName.setText(null);
+        etContainer.setVisibility(View.VISIBLE);
         etFileName.setVisibility(View.VISIBLE);
         btUpload.setEnabled(false);
         btUpload.setVisibility(View.VISIBLE);
