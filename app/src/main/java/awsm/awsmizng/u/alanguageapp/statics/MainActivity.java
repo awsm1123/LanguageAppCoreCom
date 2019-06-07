@@ -2,6 +2,7 @@ package awsm.awsmizng.u.alanguageapp.statics;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,13 +17,11 @@ import android.view.MenuItem;
 import awsm.awsmizng.u.alanguageapp.ArchiveFragment;
 import awsm.awsmizng.u.alanguageapp.ProfileFragment;
 import awsm.awsmizng.u.alanguageapp.R;
+import awsm.awsmizng.u.alanguageapp.UploadArticlesFragment;
 import awsm.awsmizng.u.alanguageapp.UploadFragment;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
-
-
-
+public class MainActivity extends AppCompatActivity implements UploadFragment.OnFragmentInteractionListener, UploadArticlesFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
     }
 
     private void showFrament(Class fragmentClass) {
@@ -87,5 +85,15 @@ public class MainActivity extends AppCompatActivity {
         } else { //permission is automatically granted on sdk<23 upon installation
             Log.v(Constants.READ_PERMISSION_LOG_TAG, "Permission is granted1");
         }
+    }
+
+    @Override
+    public void messageFromParentFragment(Uri uri) {
+        Log.i("TAG", "received communication from parent fragment");
+    }
+
+    @Override
+    public void messageFromChildFragment(Uri uri) {
+        Log.i("TAG", "received communication from child fragment");
     }
 }
