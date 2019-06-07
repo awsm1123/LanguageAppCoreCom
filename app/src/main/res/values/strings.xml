@@ -14,4 +14,6 @@
         <item>B1</item>
         <item>B2</item>
     </string-array>
+
+    <string name="langPref">You Chose&#160;</string>
 </resources>

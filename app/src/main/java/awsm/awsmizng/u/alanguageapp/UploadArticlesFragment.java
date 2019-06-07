@@ -51,7 +51,7 @@ public class UploadArticlesFragment extends Fragment {
 
     StorageReference storageReference;
     DatabaseReference databaseReference;
-    public static String fileName;
+    public static String fileName, theme = null;
     private OnFragmentInteractionListener mListener;
 
     @BindView(R.id.etFileName)
@@ -113,11 +113,13 @@ public class UploadArticlesFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //TODO get items from here
                 // Toast.makeText(getContext(), parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+
+                theme = parent.getItemAtPosition(position).toString();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+                theme = parent.getItemAtPosition(0).toString();
             }
         });
 
@@ -176,7 +178,7 @@ public class UploadArticlesFragment extends Fragment {
                         taskSnapshot.getMetadata().getReference().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
-                                Upload upload = new Upload(fileName, uri.toString());
+                                Upload upload = new Upload(fileName, uri.toString(), theme);
                                 databaseReference.child(databaseReference.push().getKey()).setValue(upload);
                             }
                         });
