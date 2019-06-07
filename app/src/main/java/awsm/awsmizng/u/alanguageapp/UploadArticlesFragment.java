@@ -164,6 +164,7 @@ public class UploadArticlesFragment extends Fragment {
         UploadProgress.setVisibility(View.VISIBLE);
         etContainer.setVisibility(View.GONE);
         etFileName.setVisibility(View.GONE);
+        spinner.setVisibility(View.GONE);
         btUpload.setVisibility(View.GONE);
 
         StorageReference sRef = storageReference.child(Constants.STORAGE_PATH_UPLOADS + fileName + UUID.randomUUID() + ".pdf");
@@ -208,6 +209,7 @@ public class UploadArticlesFragment extends Fragment {
         etFileName.setText(null);
         etContainer.setVisibility(View.VISIBLE);
         etFileName.setVisibility(View.VISIBLE);
+        spinner.setVisibility(View.VISIBLE);
         btUpload.setEnabled(false);
         btUpload.setVisibility(View.VISIBLE);
     }
