@@ -12,7 +12,8 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/botton_nav"
         android:layout_alignParentTop="true"/>
-    
+
+
     <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
         android:id="@+id/botton_nav"
         android:layout_width="match_parent"
@@ -23,5 +24,4 @@
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"
         app:labelVisibilityMode="selected"/>
-
 </RelativeLayout>
