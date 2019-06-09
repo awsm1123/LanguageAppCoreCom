@@ -51,8 +51,7 @@ public class Crossway extends AppCompatActivity {
 
             if (resultCode == RESULT_OK) {
                 // Successfully signed in
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                Toast.makeText(getApplicationContext(), user.getDisplayName(), Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(), FillInfo.class));
                 // ...
             } else {
 
