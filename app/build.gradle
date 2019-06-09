@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('C:\\Users\\aayus\\AndroidStudioProjects\\LanguageAppPassword9.jks')
+            storePassword 'Password9'
+            keyAlias = 'key0'
+            keyPassword 'Password9'
+        }
+    }
     compileSdkVersion 28
     defaultConfig {
         applicationId "awsm.awsmizng.u.alanguageapp"
@@ -9,11 +17,14 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.debug
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            debuggable = true
+            signingConfig signingConfigs.debug
         }
     }
 }
