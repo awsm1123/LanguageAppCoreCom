@@ -5,13 +5,17 @@ public class FirebaseUserProfile {
     public String userName;
     public String language;
     public String userID;
+    public int uploads;
+    public String lastActive;
 
     public FirebaseUserProfile(){}
 
-    public FirebaseUserProfile(String userName, String language, String userID) {
+    public FirebaseUserProfile(String userName, String language, String userID, int uploads, String lastActive) {
         this.userName = userName;
         this.language = language;
         this.userID = userID;
+        this.uploads = uploads;
+        this.lastActive = lastActive;
     }
 
     public String getUserName() {
@@ -36,5 +40,21 @@ public class FirebaseUserProfile {
 
     public void setUserID(String userID) {
         this.userID = userID;
+    }
+
+    public int getUploads() {
+        return uploads;
+    }
+
+    public void setUploads(int uploads) {
+        this.uploads = uploads;
+    }
+
+    public String getLastActive() {
+        return lastActive;
+    }
+
+    public void setLastActive(String lastActive) {
+        this.lastActive = lastActive;
     }
 }

@@ -3,14 +3,18 @@ package awsm.awsmizng.u.alanguageapp.models;
 public class Upload {
     public String name;
     public String url;
-    public String theme;
+    public String uploaderName;
+    public String uploaderID;
+    public String uploadTime;
 
     public Upload(){}
 
-    public Upload(String name, String url, String theme) {
+    public Upload(String name, String url, String uploaderName, String uploaderID, String uploadTime) {
         this.name = name;
         this.url = url;
-        this.theme = theme;
+        this.uploaderName = uploaderName;
+        this.uploaderID = uploaderID;
+        this.uploadTime = uploadTime;
     }
 
     public String getName() {
@@ -29,11 +33,27 @@ public class Upload {
         this.url = url;
     }
 
-    public String getTheme() {
-        return theme;
+    public String getUploaderName() {
+        return uploaderName;
     }
 
-    public void setTheme(String theme) {
-        this.theme = theme;
+    public void setUploaderName(String uploaderName) {
+        this.uploaderName = uploaderName;
+    }
+
+    public String getUploaderID() {
+        return uploaderID;
+    }
+
+    public void setUploaderID(String uploaderID) {
+        this.uploaderID = uploaderID;
+    }
+
+    public String getUploadTime() {
+        return uploadTime;
+    }
+
+    public void setUploadTime(String uploadTime) {
+        this.uploadTime = uploadTime;
     }
 }

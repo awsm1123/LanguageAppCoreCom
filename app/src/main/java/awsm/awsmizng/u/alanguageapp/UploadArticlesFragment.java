@@ -25,17 +25,24 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.Date;
 import java.util.UUID;
 
+import awsm.awsmizng.u.alanguageapp.models.FirebaseUserProfile;
 import awsm.awsmizng.u.alanguageapp.models.Upload;
 import awsm.awsmizng.u.alanguageapp.statics.Constants;
+import awsm.awsmizng.u.alanguageapp.statics.MainActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -50,9 +57,10 @@ import static android.app.Activity.RESULT_OK;
 public class UploadArticlesFragment extends Fragment {
 
     StorageReference storageReference;
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference, databaseReference2;
     public static String fileName, theme = null;
     private OnFragmentInteractionListener mListener;
+    static int uploads;
 
     @BindView(R.id.etFileName)
     TextInputEditText etFileName;
@@ -85,6 +93,7 @@ public class UploadArticlesFragment extends Fragment {
 
         storageReference = FirebaseStorage.getInstance().getReference();
         databaseReference = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADS);
+        databaseReference2 = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADERS);
 
         transitionsContainer = (ViewGroup) view.findViewById(R.id.transitionContainer);
         etFileName.addTextChangedListener(new TextWatcher() {
@@ -178,8 +187,38 @@ public class UploadArticlesFragment extends Fragment {
                         taskSnapshot.getMetadata().getReference().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
-                                Upload upload = new Upload(fileName, uri.toString(), theme);
-                                databaseReference.child(databaseReference.push().getKey()).setValue(upload);
+                                Upload upload = new Upload(
+                                        fileName,
+                                        uri.toString(),
+                                        Constants.uploaderName,
+                                        Constants.uploaderID,
+                                        Constants.sdf.format(new Date())
+                                );
+                                databaseReference.child(Constants.language)
+                                        .child(theme)
+                                        .child(databaseReference.push().getKey())
+                                        .setValue(upload);
+
+                                Query ref = databaseReference2.orderByChild("userID").equalTo(Constants.uploaderID);
+                                ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        if (dataSnapshot.exists()) {
+                                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                                FirebaseUserProfile userProfile = snapshot.getValue(FirebaseUserProfile.class);
+                                                uploads = userProfile.getUploads();
+                                            }
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                });
+
+                                databaseReference2.child(Constants.uploaderID).child("uploads").setValue(uploads + 1);
+                                databaseReference2.child(Constants.uploaderID).child("lastActive").setValue(Constants.sdf.format(new Date()));
                             }
                         });
 

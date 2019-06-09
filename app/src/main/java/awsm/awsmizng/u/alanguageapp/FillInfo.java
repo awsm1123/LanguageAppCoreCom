@@ -25,6 +25,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Date;
+
 import awsm.awsmizng.u.alanguageapp.models.FirebaseUserProfile;
 import awsm.awsmizng.u.alanguageapp.statics.Constants;
 import awsm.awsmizng.u.alanguageapp.statics.MainActivity;
@@ -64,7 +66,7 @@ public class FillInfo extends AppCompatActivity {
         ButterKnife.bind(this);
 
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         databaseReference2 = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADERS);
         Query ref = databaseReference2.orderByChild("userID").equalTo(user.getUid());
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -74,6 +76,8 @@ public class FillInfo extends AppCompatActivity {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         FirebaseUserProfile userProfile = snapshot.getValue(FirebaseUserProfile.class);
                         Constants.language = userProfile.getLanguage();
+                        Constants.uploaderName = userProfile.getUserName();
+                        Constants.uploaderID = userProfile.getUserID();
                         Intent intent = new Intent(getApplication(), MainActivity.class);
                         startActivity(intent);
                     }
@@ -137,22 +141,18 @@ public class FillInfo extends AppCompatActivity {
                 tvLanguageChosen.setText(getString(R.string.langPref) + Constants.language);
                 break;
             case R.id.submit:
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                FirebaseUserProfile firebaseUserProfile = new FirebaseUserProfile(etDisplayName.getText().toString(), Constants.language, user.getUid());
-                databaseReference2.child(user.getUid()).setValue(firebaseUserProfile);
+                Constants.uploaderID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                Constants.uploaderName = etDisplayName.getText().toString();
+                FirebaseUserProfile firebaseUserProfile = new FirebaseUserProfile(Constants.uploaderName,
+                        Constants.language,
+                        Constants.uploaderID,
+                        0,
+                        Constants.sdf.format(new Date())
+                );
+                databaseReference2.child(Constants.uploaderID).setValue(firebaseUserProfile);
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 finish();
                 break;
         }
     }
-
-    /*@OnClick(R.id.submit)
-    public void onViewClicked() {
-        //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-       // FirebaseUserProfile firebaseUserProfile = new FirebaseUserProfile(etDisplayName.getText().toString(), "German", user.getUid());
-        //databaseReference2.child(user.getUid()).setValue(firebaseUserProfile);
-        //Constants.language = etLanguage.getText().toString();
-        //startActivity(new Intent(getApplicationContext(), MainActivity.class));
-        //finish();
-    }*/
 }
