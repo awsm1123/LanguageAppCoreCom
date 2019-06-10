@@ -11,6 +11,7 @@ import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.transition.TransitionManager;
 import android.view.LayoutInflater;
@@ -60,7 +61,7 @@ public class UploadArticlesFragment extends Fragment {
     DatabaseReference databaseReference, databaseReference2;
     public static String fileName, theme = null;
     private OnFragmentInteractionListener mListener;
-    static int uploads;
+    static String uploads;
 
     @BindView(R.id.etFileName)
     TextInputEditText etFileName;
@@ -206,7 +207,7 @@ public class UploadArticlesFragment extends Fragment {
                                         if (dataSnapshot.exists()) {
                                             for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                                                 FirebaseUserProfile userProfile = snapshot.getValue(FirebaseUserProfile.class);
-                                                uploads = userProfile.getUploads();
+                                                uploads = userProfile.getPoints();
                                             }
                                         }
                                     }
@@ -217,7 +218,12 @@ public class UploadArticlesFragment extends Fragment {
                                     }
                                 });
 
-                                databaseReference2.child(Constants.uploaderID).child("uploads").setValue(uploads + 1);
+                                int updateUpload = 0;
+                                if (!TextUtils.isEmpty(uploads) && TextUtils.isDigitsOnly(uploads)) {
+                                    updateUpload = Integer.parseInt(uploads) + 1;
+                                }
+
+                                databaseReference2.child(Constants.uploaderID).child("points").setValue(updateUpload+"");
                                 databaseReference2.child(Constants.uploaderID).child("lastActive").setValue(Constants.sdf.format(new Date()));
                             }
                         });

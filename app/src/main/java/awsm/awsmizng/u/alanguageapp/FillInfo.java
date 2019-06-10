@@ -146,7 +146,7 @@ public class FillInfo extends AppCompatActivity {
                 FirebaseUserProfile firebaseUserProfile = new FirebaseUserProfile(Constants.uploaderName,
                         Constants.language,
                         Constants.uploaderID,
-                        0,
+                        "0",
                         Constants.sdf.format(new Date())
                 );
                 databaseReference2.child(Constants.uploaderID).setValue(firebaseUserProfile);

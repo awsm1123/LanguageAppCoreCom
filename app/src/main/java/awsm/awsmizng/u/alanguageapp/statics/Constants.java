@@ -1,11 +1,15 @@
 package awsm.awsmizng.u.alanguageapp.statics;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.text.SimpleDateFormat;
 
 public class Constants {
     public static final String STORAGE_PATH_UPLOADS = "uploads/";
     public static final String DATABASE_PATH_UPLOADS = "uploads";
     public static final String DATABASE_PATH_UPLOADERS = "uploaders";
+    public static final DatabaseReference DATABASE_BASE_REFERENCE = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADS);
     public static final String READ_PERMISSION_LOG_TAG = "Read Permission";
 
     public static final int PICK_PDF_CODE = 2342;

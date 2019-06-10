@@ -5,16 +5,16 @@ public class FirebaseUserProfile {
     public String userName;
     public String language;
     public String userID;
-    public int uploads;
+    public String points;
     public String lastActive;
 
     public FirebaseUserProfile(){}
 
-    public FirebaseUserProfile(String userName, String language, String userID, int uploads, String lastActive) {
+    public FirebaseUserProfile(String userName, String language, String userID, String points, String lastActive) {
         this.userName = userName;
         this.language = language;
         this.userID = userID;
-        this.uploads = uploads;
+        this.points = points;
         this.lastActive = lastActive;
     }
 
@@ -42,12 +42,12 @@ public class FirebaseUserProfile {
         this.userID = userID;
     }
 
-    public int getUploads() {
-        return uploads;
+    public String getPoints() {
+        return points;
     }
 
-    public void setUploads(int uploads) {
-        this.uploads = uploads;
+    public void setPoints(String points) {
+        this.points = points;
     }
 
     public String getLastActive() {

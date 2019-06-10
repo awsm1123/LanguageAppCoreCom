@@ -78,7 +78,7 @@ public class ArchiveFragment extends Fragment {
         unbinder = ButterKnife.bind(this, view);
         transition = (ViewGroup) view.findViewById(R.id.transitionContainer);
         hideLists();
-        databaseReference = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADS).child(Constants.language);
+        databaseReference = Constants.DATABASE_BASE_REFERENCE.child(Constants.language);
 
         return view;
     }
