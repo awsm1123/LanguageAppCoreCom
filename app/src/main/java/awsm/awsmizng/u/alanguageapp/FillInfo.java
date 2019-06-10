@@ -80,6 +80,7 @@ public class FillInfo extends AppCompatActivity {
                         Constants.uploaderID = userProfile.getUserID();
                         Intent intent = new Intent(getApplication(), MainActivity.class);
                         startActivity(intent);
+                        finish();
                     }
                 } else {
                     ViewGroup transiion = findViewById(R.id.transition_scene);

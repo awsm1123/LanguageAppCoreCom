@@ -28,6 +28,7 @@ public class SplashScreen extends AppCompatActivity {
                 finally
                 {
                     startActivity(new Intent(getApplication(), Crossway.class));
+                    finish();
                 }
             }
         };

@@ -10,10 +10,33 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:columnCount="4"
-        android:rowCount="4"
+        android:rowCount="5"
         android:background="@drawable/bottom_nav_background_light"
         android:paddingVertical="10dp"
         >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_columnSpan="4"
+            android:text="@string/app_full_name"
+            android:textColor="@color/white"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:fontFamily="@font/nunito_semibold"
+            android:paddingStart="10dp"/>
+
+        <ImageView
+            android:id="@+id/settings"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_row="0"
+            android:layout_column="3"
+            android:layout_gravity="right|top"
+            android:src="@drawable/settings_icon"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="5dp"/>
         <ImageView
             android:id="@+id/ivLanguageFlag"
             android:layout_width="100dp"
@@ -21,7 +44,7 @@
             android:layout_rowSpan="4"
             android:layout_columnSpan="1"
             android:layout_column="0"
-            android:layout_row="0"
+            android:layout_row="1"
             android:layout_gravity="center"
             android:layout_margin="10dp"
 
@@ -31,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="Name"
-            android:layout_row="0"
+            android:layout_row="1"
             android:layout_column="2"
             style="@style/profile_grid_header"/>
 
@@ -39,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="Experience\nPoints"
-            android:layout_row="0"
+            android:layout_row="1"
             android:layout_column="3"
             style="@style/profile_grid_header"/>
 
@@ -48,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="Articles"
-            android:layout_row="2"
+            android:layout_row="3"
             android:layout_column="2"
             style="@style/profile_grid_header"/>
 
@@ -56,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="Quizzes"
-            android:layout_row="2"
+            android:layout_row="3"
             android:layout_column="3"
             style="@style/profile_grid_header"/>
 
@@ -64,7 +87,7 @@
             android:id="@+id/name"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:layout_row="1"
+            android:layout_row="2"
             android:layout_column="2"
             style="@style/profile_grid_values"/>
 
@@ -72,7 +95,7 @@
             android:id="@+id/tvExpPpoints"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:layout_row="1"
+            android:layout_row="2"
             android:layout_column="3"
             style="@style/profile_grid_values"/>
 
@@ -80,7 +103,7 @@
             android:id="@+id/tvArticleNumber"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:layout_row="3"
+            android:layout_row="4"
             android:layout_column="2"
             style="@style/profile_grid_values"/>
 
@@ -88,7 +111,7 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="0"
-            android:layout_row="3"
+            android:layout_row="4"
             android:layout_column="3"
             style="@style/profile_grid_values"/>
     </GridLayout>

@@ -10,7 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -48,6 +47,8 @@ public class ProfileFragment extends Fragment {
     TextView tvArticleNumber;
     @BindView(R.id.ivLanguageFlag)
     ImageView icon;
+    @BindView(R.id.settings)
+    ImageView settings;
 
     private LinearLayoutManager linearLayoutManager;
     private FirebaseRecyclerAdapter firebaseRecyclerAdapter;
@@ -166,6 +167,11 @@ public class ProfileFragment extends Fragment {
         firebaseRecyclerAdapter.startListening();
     }
 
+    @OnClick(R.id.settings)
+    public void onViewClicked() {
+        startActivity(new Intent(getActivity(), Settings.class));
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public LinearLayout root;
@@ -192,9 +198,4 @@ public class ProfileFragment extends Fragment {
         }
     }
 
-
-    private void signOut() {
-        FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(getContext(), Crossway.class));
-    }
 }
