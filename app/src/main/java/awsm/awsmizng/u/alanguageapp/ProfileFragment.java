@@ -64,11 +64,13 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         unbinder = ButterKnife.bind(this, view);
-        setIcon();
+
         linearLayoutManager = new LinearLayoutManager(getContext());
         rvProfiles.setLayoutManager(linearLayoutManager);
         rvProfiles.setHasFixedSize(true);
         fetch();
+        setIconAndName();
+
 
         Query ref = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADERS).orderByChild("userID").equalTo(Constants.uploaderID);
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -77,7 +79,6 @@ public class ProfileFragment extends Fragment {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         FirebaseUserProfile userProfile = snapshot.getValue(FirebaseUserProfile.class);
-                        name.setText(userProfile.getUserName());
                         ExPoints.setText(userProfile.getPoints());
                         tvArticleNumber.setText(userProfile.getPoints());
                     }
@@ -92,7 +93,7 @@ public class ProfileFragment extends Fragment {
         return view;
     }
 
-    private void setIcon() {
+    private void setIconAndName() {
         if (Constants.language.equals("GERMAN")) {
             icon.setImageResource(R.drawable.germany);
         }
@@ -108,6 +109,8 @@ public class ProfileFragment extends Fragment {
         if (Constants.language.equals("FRENCH")) {
             icon.setImageResource(R.drawable.france);
         }
+
+        name.setText(Constants.uploaderName);
     }
 
     @Override
@@ -163,8 +166,9 @@ public class ProfileFragment extends Fragment {
                 return new ViewHolder(view);
             }
         };
-        rvProfiles.setAdapter(firebaseRecyclerAdapter);
+
         firebaseRecyclerAdapter.startListening();
+        rvProfiles.setAdapter(firebaseRecyclerAdapter);
     }
 
     @OnClick(R.id.settings)

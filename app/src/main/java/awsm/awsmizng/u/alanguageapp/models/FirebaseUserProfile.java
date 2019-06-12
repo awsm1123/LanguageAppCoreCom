@@ -1,15 +1,34 @@
 package awsm.awsmizng.u.alanguageapp.models;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
+@Entity(tableName = "userDetails")
 public class FirebaseUserProfile {
 
+    @PrimaryKey
+    @NonNull
+    public String userID;
     public String userName;
     public String language;
-    public String userID;
+    @Ignore
     public String points;
+    @Ignore
     public String lastActive;
 
+
+    public FirebaseUserProfile(String userID, String userName, String language) {
+        this.userName = userName;
+        this.language = language;
+        this.userID = userID;
+    }
+
+    @Ignore
     public FirebaseUserProfile(){}
 
+    @Ignore
     public FirebaseUserProfile(String userName, String language, String userID, String points, String lastActive) {
         this.userName = userName;
         this.language = language;

@@ -15,9 +15,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Arrays;
 import java.util.List;
 
+import awsm.awsmizng.u.alanguageapp.database.UserDatabase;
 import awsm.awsmizng.u.alanguageapp.statics.Constants;
 
 public class Crossway extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +32,7 @@ public class Crossway extends AppCompatActivity {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if(user!=null){
-            startActivity(new Intent(getApplicationContext(), FillInfo.class));
+            startActivity(new Intent(getApplicationContext(), FillInfo.class).putExtra("redirect", 0));
             finish();
         } else{
             startActivityForResult(
@@ -51,7 +53,7 @@ public class Crossway extends AppCompatActivity {
 
             if (resultCode == RESULT_OK) {
                 // Successfully signed in
-                startActivity(new Intent(getApplicationContext(), FillInfo.class));
+                startActivity(new Intent(getApplicationContext(), FillInfo.class).putExtra("redirect", 1));
                 finish();
                 // ...
             } else {
