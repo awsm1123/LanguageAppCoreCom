@@ -16,10 +16,13 @@ public class Constants {
 
     public static final int PICK_PDF_CODE = 2342;
     public static final int RC_SIGN_IN = 6969;
+    public static final int LIGHT_THEME = 0;
+    public static final int DARK_THEME = 1;
 
     public static String uploaderName = null;
     public static String uploaderID = null;
     public static String language = null;
+    public static int theme = LIGHT_THEME;
 
     public static SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy HH:mm:ss");
 

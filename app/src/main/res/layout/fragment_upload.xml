@@ -6,15 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
-    tools:context=".UploadFragment"
-    android:background="@color/white">
+    tools:context=".fragments.UploadFragment">
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabIndicatorColor="@color/colorAccent"
-        app:tabSelectedTextColor="@color/colorAccent"
+        app:tabIndicatorColor="?colorAccent"
+        app:tabSelectedTextColor="?colorAccent"
         app:tabTextColor="@color/dull_grey"
         />
     <FrameLayout

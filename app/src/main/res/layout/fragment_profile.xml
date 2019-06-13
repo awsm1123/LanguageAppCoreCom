@@ -4,15 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ProfileFragment">
+    tools:context=".fragments.ProfileFragment">
 
     <GridLayout
+        android:id="@+id/gridLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:columnCount="4"
         android:rowCount="5"
-        android:background="@drawable/bottom_nav_background_light"
         android:paddingVertical="10dp"
+        android:background="?colorPrimary"
         >
 
         <TextView
@@ -116,11 +117,21 @@
             style="@style/profile_grid_values"/>
     </GridLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <View
+        android:id="@+id/accentBottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/bottom_nav_background_light"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.RecyclerView
         android:id="@+id/rvProfiles"
         android:layout_margin="10dp"
         android:scrollbars="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-
+    </ScrollView>
 </LinearLayout>

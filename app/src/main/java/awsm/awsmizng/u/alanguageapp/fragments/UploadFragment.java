@@ -1,4 +1,4 @@
-package awsm.awsmizng.u.alanguageapp;
+package awsm.awsmizng.u.alanguageapp.fragments;
 
 
 import android.content.Context;
@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import awsm.awsmizng.u.alanguageapp.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;

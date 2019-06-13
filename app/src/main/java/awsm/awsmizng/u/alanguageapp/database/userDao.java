@@ -22,4 +22,6 @@ public interface userDao {
     @Insert
     void insertUser(FirebaseUserProfile userProfile);
 
+    @Query("UPDATE userDetails SET theme=:theme WHERE userID = :userID")
+    void updateUser(String userID, int theme);
 }

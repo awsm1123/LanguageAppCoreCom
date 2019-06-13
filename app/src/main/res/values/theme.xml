@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ThemeLight" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:fontFamily">@font/nunito_regular</item>
+
+        <item name="android:windowBackground">@color/white</item>
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="upload_pic">@style/l_upload_pic</item>
+
+        <item name="upload_button">@style/l_upload_button</item>
+
+    </style>
+
+
+
+    <style name="ThemeDark" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:fontFamily">@font/nunito_regular</item>
+
+        <item name="android:windowBackground">@color/windowBackgroundColor</item>
+
+        <item name="colorPrimary">@color/DarkcolorPrimary</item>
+        <item name="colorPrimaryDark">@color/DarkcolorPrimaryDark</item>
+        <item name="colorAccent">@color/DarkcolorAccent</item>
+
+        <item name="upload_pic">@style/d_upload_pic</item>
+
+        <item name="upload_button">@style/d_upload_button</item>
+    </style>
+
+
+</resources>

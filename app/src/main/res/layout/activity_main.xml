@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".statics.MainActivity"
-    android:background="@color/white">
+    tools:context=".activities.MainActivity">
 
     <FrameLayout
         android:id="@+id/fragmentFrame"
@@ -21,8 +20,25 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         app:menu="@menu/bottom_nav_menu"
-        android:background="@drawable/bottom_nav_background_light"
+        app:labelVisibilityMode="selected"
+        app:elevation="5dp"
+        />
+      <!--  android:background="@drawable/bottom_nav_background_light"
         app:itemIconTint="@color/white"
-        app:itemTextColor="@color/white"
-        app:labelVisibilityMode="selected"/>
+        app:itemTextColor="@color/white" -->
+
+    <View
+        android:id="@+id/accentBottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/bottom_nav_background_light"
+        android:layout_above="@+id/botton_nav"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@drawable/bottombarshadow"
+        android:layout_above="@id/accentBottomBar"/>
+
 </RelativeLayout>

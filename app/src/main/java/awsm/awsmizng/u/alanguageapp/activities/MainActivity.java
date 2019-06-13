@@ -1,4 +1,4 @@
-package awsm.awsmizng.u.alanguageapp.statics;
+package awsm.awsmizng.u.alanguageapp.activities;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -14,17 +14,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 
-import awsm.awsmizng.u.alanguageapp.ArchiveFragment;
-import awsm.awsmizng.u.alanguageapp.ProfileFragment;
+import awsm.awsmizng.u.alanguageapp.fragments.ArchiveFragment;
+import awsm.awsmizng.u.alanguageapp.fragments.ProfileFragment;
 import awsm.awsmizng.u.alanguageapp.R;
-import awsm.awsmizng.u.alanguageapp.UploadArticlesFragment;
-import awsm.awsmizng.u.alanguageapp.UploadFragment;
+import awsm.awsmizng.u.alanguageapp.fragments.UploadArticlesFragment;
+import awsm.awsmizng.u.alanguageapp.fragments.UploadFragment;
+import awsm.awsmizng.u.alanguageapp.statics.Constants;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements UploadFragment.OnFragmentInteractionListener, UploadArticlesFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if(Constants.theme == Constants.LIGHT_THEME){
+            setTheme(R.style.ThemeLight);
+        } else if(Constants.theme == Constants.DARK_THEME){
+            setTheme(R.style.ThemeDark);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);

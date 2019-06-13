@@ -1,11 +1,10 @@
-package awsm.awsmizng.u.alanguageapp;
+package awsm.awsmizng.u.alanguageapp.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
-import android.text.TextPaint;
 import android.text.TextWatcher;
 import android.transition.TransitionManager;
 import android.util.Log;
@@ -29,11 +28,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Date;
 
+import awsm.awsmizng.u.alanguageapp.R;
 import awsm.awsmizng.u.alanguageapp.database.AppExecutors;
 import awsm.awsmizng.u.alanguageapp.database.UserDatabase;
 import awsm.awsmizng.u.alanguageapp.models.FirebaseUserProfile;
 import awsm.awsmizng.u.alanguageapp.statics.Constants;
-import awsm.awsmizng.u.alanguageapp.statics.MainActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -82,6 +81,7 @@ public class FillInfo extends AppCompatActivity {
                     Constants.uploaderID = RoomUserProfile.getUserID();
                     Constants.uploaderName = RoomUserProfile.getUserName();
                     Constants.language = RoomUserProfile.getLanguage();
+                    Constants.theme = RoomUserProfile.getTheme();
                     Log.v(Constants.ROOM_DATABASE_LOG_TAG, "Read from room");
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     finish();
@@ -187,7 +187,8 @@ public class FillInfo extends AppCompatActivity {
     private void saveUserToRoom(){
         final FirebaseUserProfile roomUserProfile =  new FirebaseUserProfile(Constants.uploaderID,
                 Constants.uploaderName,
-                Constants.language);
+                Constants.language,
+                Constants.LIGHT_THEME);
         AppExecutors.getInstance().diskIO().execute(new Runnable() {
             @Override
             public void run() {

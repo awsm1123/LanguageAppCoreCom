@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/transitionContainer"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_margin="10dp"
-    android:gravity="center_horizontal"
-    android:background="@color/white"
-    tools:context=".UploadArticlesFragment">
+    tools:context=".fragments.UploadArticlesFragment">
 
-    <ImageView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@drawable/upload_illustration"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/transitionContainer"
+        android:gravity="center_horizontal">
+    <ImageView
+        style="?upload_pic"/>
 
 
     <android.support.design.widget.TextInputLayout
@@ -46,11 +46,8 @@
         android:id="@+id/btUpload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp"
         android:text="SELECT FILE AND UPLOAD"
-        android:textColor="@color/white"
-        android:layout_margin="10dp"
-        android:background="@drawable/ic_upload_button"
+        style="?upload_button"
         />
 
     <ProgressBar
@@ -70,5 +67,5 @@
         android:text="Upload Status"
         android:layout_margin="20dp"
         android:gravity="center"/>
-
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

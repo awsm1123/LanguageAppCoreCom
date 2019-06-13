@@ -1,4 +1,4 @@
-package awsm.awsmizng.u.alanguageapp;
+package awsm.awsmizng.u.alanguageapp.activities;
 
 import android.content.Intent;
 import android.support.annotation.Nullable;
@@ -10,12 +10,11 @@ import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.IdpResponse;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Arrays;
 import java.util.List;
 
-import awsm.awsmizng.u.alanguageapp.database.UserDatabase;
+import awsm.awsmizng.u.alanguageapp.R;
 import awsm.awsmizng.u.alanguageapp.statics.Constants;
 
 public class Crossway extends AppCompatActivity {
@@ -39,7 +38,7 @@ public class Crossway extends AppCompatActivity {
                     AuthUI.getInstance()
                             .createSignInIntentBuilder()
                             .setAvailableProviders(providers)
-                            .setTheme(R.style.AppTheme)
+                            .setTheme(R.style.ThemeLight)
                             .build(),
                     Constants.RC_SIGN_IN);
         }

@@ -1,4 +1,4 @@
-package awsm.awsmizng.u.alanguageapp;
+package awsm.awsmizng.u.alanguageapp.fragments;
 
 
 import android.content.Intent;
@@ -18,13 +18,14 @@ import android.widget.Toast;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.firebase.ui.database.SnapshotParser;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import awsm.awsmizng.u.alanguageapp.R;
+import awsm.awsmizng.u.alanguageapp.activities.Settings;
 import awsm.awsmizng.u.alanguageapp.models.FirebaseProfileRV;
 import awsm.awsmizng.u.alanguageapp.models.FirebaseUserProfile;
 import awsm.awsmizng.u.alanguageapp.statics.Constants;

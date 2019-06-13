@@ -1,8 +1,10 @@
-package awsm.awsmizng.u.alanguageapp;
+package awsm.awsmizng.u.alanguageapp.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import awsm.awsmizng.u.alanguageapp.R;
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -18,7 +20,7 @@ public class SplashScreen extends AppCompatActivity {
                 try
                 {
                     //Display for 3 seconds
-                    sleep(3000);
+                    sleep(100);
                 }
                 catch (InterruptedException e)
                 {

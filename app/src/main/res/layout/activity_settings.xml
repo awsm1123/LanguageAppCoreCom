@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="20dp"
-    tools:context=".Settings">
+    tools:context=".activities.Settings">
 
     <TextView
         android:text="Settings"
@@ -14,6 +14,28 @@
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:fontFamily="@font/nunito_bold"/>
+
+    <Switch
+        android:id="@+id/swTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dark Theme"
+        style="@style/settings_style"
+        />
+
+    <TextView
+        android:id="@+id/btAbout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="About"
+        style="@style/settings_style"/>
+
+    <TextView
+        android:id="@+id/btFeedback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Feedback"
+        style="@style/settings_style"/>
 
     <TextView
         android:id="@+id/btLogOut"

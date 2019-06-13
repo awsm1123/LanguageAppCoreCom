@@ -13,16 +13,18 @@ public class FirebaseUserProfile {
     public String userID;
     public String userName;
     public String language;
+    public int theme;
     @Ignore
     public String points;
     @Ignore
     public String lastActive;
 
 
-    public FirebaseUserProfile(String userID, String userName, String language) {
+    public FirebaseUserProfile(@NonNull String userID, String userName, String language, int theme) {
+        this.userID = userID;
         this.userName = userName;
         this.language = language;
-        this.userID = userID;
+        this.theme = theme;
     }
 
     @Ignore
@@ -75,5 +77,13 @@ public class FirebaseUserProfile {
 
     public void setLastActive(String lastActive) {
         this.lastActive = lastActive;
+    }
+
+    public int getTheme() {
+        return theme;
+    }
+
+    public void setTheme(int theme) {
+        this.theme = theme;
     }
 }

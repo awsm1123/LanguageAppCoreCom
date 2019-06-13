@@ -1,4 +1,4 @@
-package awsm.awsmizng.u.alanguageapp;
+package awsm.awsmizng.u.alanguageapp.fragments;
 
 
 import android.content.Context;
@@ -40,10 +40,10 @@ import com.google.firebase.storage.UploadTask;
 import java.util.Date;
 import java.util.UUID;
 
+import awsm.awsmizng.u.alanguageapp.R;
 import awsm.awsmizng.u.alanguageapp.models.FirebaseUserProfile;
 import awsm.awsmizng.u.alanguageapp.models.Upload;
 import awsm.awsmizng.u.alanguageapp.statics.Constants;
-import awsm.awsmizng.u.alanguageapp.statics.MainActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;

@@ -3,19 +3,30 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#7C4DFF</color>
+
     <color name="white">#FFFFFF</color>
     <color name="black">#000</color>
     <color name="dull_grey">#A9A9A9</color>
 
-    <color name="colorGradientDark">#FF5EA0</color>
-
-    <color name="button_background_light">#3D51BF</color>
-    <color name="button_background_dark">#4258D3</color>
+    <color name="l_button_background_light">#3D51BF</color>
+    <color name="l_button_background_dark">#4258D3</color>
 
     <color name="button_background_deselcetd_dark">#aaaaaa</color>
     <color name="button_background_deselcetd_light">#A3a3a3</color>
 
     <color name="primaryText">#212121</color>
+
+
+
+    <color name="windowBackgroundColor">#121212</color>
+
+    <color name="DarkcolorPrimary">#596BCB</color>
+    <color name="DarkcolorPrimaryDark">#404D9E</color>
+    <color name="DarkcolorAccent">#9D7AFF</color>
+    <color name="bottomNavDark">#1E1E1E</color>
+
+    <color name="d_button_background_light">#4E61CE</color>
+    <color name="d_button_background_dark">#4758BB</color>
 </resources>
 
 

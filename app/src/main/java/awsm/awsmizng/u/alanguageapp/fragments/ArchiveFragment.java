@@ -1,4 +1,4 @@
-package awsm.awsmizng.u.alanguageapp;
+package awsm.awsmizng.u.alanguageapp.fragments;
 
 
 import android.content.Intent;
@@ -23,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import awsm.awsmizng.u.alanguageapp.R;
 import awsm.awsmizng.u.alanguageapp.models.Upload;
 import awsm.awsmizng.u.alanguageapp.statics.Constants;
 import butterknife.BindView;
