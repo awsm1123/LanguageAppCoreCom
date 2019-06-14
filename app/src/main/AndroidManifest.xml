@@ -22,7 +22,9 @@
         </activity>
         <activity android:name=".activities.Crossway"></activity>
         <activity android:name=".activities.FillInfo" />
-        <activity android:name=".activities.MainActivity" />
+        <activity
+            android:name=".activities.MainActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
     </application>
 
 </manifest>

@@ -10,10 +10,10 @@
         android:id="@+id/gridLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="?profile_fragment_back"
         android:columnCount="4"
         android:rowCount="5"
         android:paddingVertical="10dp"
-        android:background="?colorPrimary"
         >
 
         <TextView

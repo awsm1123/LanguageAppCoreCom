@@ -2,6 +2,7 @@
 <resources>
 
     <style name="ThemeLight" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="themeName">light</item>
         <item name="android:fontFamily">@font/nunito_regular</item>
 
         <item name="android:windowBackground">@color/white</item>
@@ -14,11 +15,16 @@
 
         <item name="upload_button">@style/l_upload_button</item>
 
+        <item name="bottom_nav_back">@style/l_bottom_nav</item>
+        <item name="bottom_nav_icon">@color/white</item>
+
+        <item name="profile_fragment_back">@style/l_top_bar</item>
     </style>
 
 
 
     <style name="ThemeDark" parent="Theme.AppCompat.NoActionBar">
+        <item name="themeName">dark</item>
         <item name="android:fontFamily">@font/nunito_regular</item>
 
         <item name="android:windowBackground">@color/windowBackgroundColor</item>
@@ -30,6 +36,10 @@
         <item name="upload_pic">@style/d_upload_pic</item>
 
         <item name="upload_button">@style/d_upload_button</item>
+        <item name="bottom_nav_back">@style/d_bottom_nav</item>
+        <item name="bottom_nav_icon">@color/DarkcolorPrimary</item>
+
+        <item name="profile_fragment_back">@style/d_top_bar</item>
     </style>
 
 

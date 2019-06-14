@@ -106,10 +106,10 @@ public class Settings extends AppCompatActivity {
         }
     }
 
-    @Override
+  /*  @Override
     public void onBackPressed() {
         startActivity(new Intent(this, MainActivity.class)
                 .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
         super.onBackPressed();
-    }
+    } */
 }

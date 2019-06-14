@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.MenuItem;
 
 import awsm.awsmizng.u.alanguageapp.fragments.ArchiveFragment;
@@ -59,6 +60,19 @@ public class MainActivity extends AppCompatActivity implements UploadFragment.On
                 return true;
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        TypedValue outValue = new TypedValue();
+        getTheme().resolveAttribute(R.attr.themeName, outValue, true);
+        if ("dark".equals(outValue.string) && Constants.theme == Constants.LIGHT_THEME) {
+            recreate();
+        }
+        if ("light".equals(outValue.string) && Constants.theme == Constants.DARK_THEME) {
+            recreate();
+        }
     }
 
     private void showFrament(Class fragmentClass) {

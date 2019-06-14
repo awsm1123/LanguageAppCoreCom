@@ -62,4 +62,18 @@
     <item name="android:background">@drawable/d_ic_upload_button</item>
   </style>
 
+  <style name="l_bottom_nav">
+    <item name="android:background">@drawable/bottom_nav_background_light</item>
+  </style>
+  <style name="d_bottom_nav">
+    <item name="android:background">@drawable/bottom_nav_dark</item>
+  </style>
+
+  <style name="l_top_bar">
+    <item name="android:background">@drawable/profile_top_bar</item>
+  </style>
+  <style name="d_top_bar">
+    <item name="android:background">@drawable/dark_profile_top_bar</item>
+  </style>
+
 </resources>

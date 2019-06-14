@@ -20,7 +20,7 @@ public class SplashScreen extends AppCompatActivity {
                 try
                 {
                     //Display for 3 seconds
-                    sleep(100);
+                    sleep(1000);
                 }
                 catch (InterruptedException e)
                 {

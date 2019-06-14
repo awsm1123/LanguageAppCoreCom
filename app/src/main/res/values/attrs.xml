@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="themeName" format="string"/>
     <attr name="upload_pic" format="reference"/>
     <attr name="upload_button" format="reference"/>
+    <attr name="profile_fragment_back" format="reference"/>
+    <attr name="bottom_nav_back" format="reference"/>
+    <attr name="bottom_nav_icon" format="reference"/>
 </resources>

@@ -22,6 +22,9 @@
         app:menu="@menu/bottom_nav_menu"
         app:labelVisibilityMode="selected"
         app:elevation="5dp"
+        style="?bottom_nav_back"
+        app:itemIconTint="@color/bottom_nav_selector_icons"
+        app:itemTextColor="@color/bottom_nav_selector_icons"
         />
       <!--  android:background="@drawable/bottom_nav_background_light"
         app:itemIconTint="@color/white"
