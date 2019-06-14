@@ -5,11 +5,23 @@
     <item name="android:fontFamily">@font/nunito_regular</item>
   </style>
 
-  <style name="archiveButton">
-   <!-- <item name="android:background">@drawable/archive_button</item> -->
+  <style name="l_archiveButton">
+     <item name="android:background">@drawable/archive_button</item>
+     <item name="android:textAppearance">@style/TextAppearance.AppCompat.Medium</item>
+     <item name="android:padding">10dp</item>
+     <item name="android:paddingStart">20dp</item>
+     <item name="android:layout_margin">5dp</item>
+     <item name="android:gravity">left</item>
+      <item name="android:textColor">@color/primaryText</item>
+  </style>
+  <style name="d_archiveButton">
+    <item name="android:background">@drawable/dark_archive_button</item>
     <item name="android:textAppearance">@style/TextAppearance.AppCompat.Medium</item>
     <item name="android:padding">10dp</item>
+    <item name="android:paddingStart">20dp</item>
     <item name="android:layout_margin">5dp</item>
+    <item name="android:gravity">left</item>
+      <item name="android:textColor">@color/DarkprimaryText</item>
   </style>
 
   <style name="profile_grid_header">
@@ -39,14 +51,19 @@
 
 
   <style name="l_upload_pic">
-    <item name="android:layout_width">match_parent</item>
-    <item name="android:background">@drawable/upload_illustration</item>
-    <item name="android:layout_height">250dp</item>
+    <item name="android:layout_width">150dp</item>
+    <item name="android:background">@drawable/upload_selected</item>
+    <item name="android:backgroundTint">@color/colorPrimary</item>
+    <item name="android:layout_height">150dp</item>
+    <item name="android:layout_margin">40dp</item>
   </style>
   <style name="d_upload_pic">
-    <item name="android:layout_width">match_parent</item>
-    <item name="android:background">@drawable/upload_illustration_dark</item>
-    <item name="android:layout_height">250dp</item>
+    <item name="android:layout_width">150dp</item>
+    <item name="android:background">@drawable/upload_selected</item>
+    <item name="android:backgroundTint">@color/DarkcolorPrimary</item>
+    <item name="android:layout_height">150dp</item>
+    <item name="android:layout_margin">40dp</item>
+    <item name="android:padding">20dp</item>
   </style>
 
   <style name="l_upload_button">

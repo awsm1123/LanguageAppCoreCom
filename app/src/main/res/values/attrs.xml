@@ -6,4 +6,5 @@
     <attr name="profile_fragment_back" format="reference"/>
     <attr name="bottom_nav_back" format="reference"/>
     <attr name="bottom_nav_icon" format="reference"/>
+    <attr name="archive_button" format="reference"/>
 </resources>

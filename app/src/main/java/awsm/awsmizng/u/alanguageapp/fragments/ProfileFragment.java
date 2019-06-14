@@ -7,9 +7,11 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -53,6 +55,7 @@ public class ProfileFragment extends Fragment {
 
     private LinearLayoutManager linearLayoutManager;
     private FirebaseRecyclerAdapter firebaseRecyclerAdapter;
+    final private String RECYCLER_VIEW = "FIREBASE RECYCLER VIEW";
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -66,10 +69,11 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         unbinder = ButterKnife.bind(this, view);
 
+        Log.v(RECYCLER_VIEW, "fetch");
+        fetch();
         linearLayoutManager = new LinearLayoutManager(getContext());
         rvProfiles.setLayoutManager(linearLayoutManager);
         rvProfiles.setHasFixedSize(true);
-        fetch();
         setIconAndName();
 
 
@@ -80,7 +84,7 @@ public class ProfileFragment extends Fragment {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         FirebaseUserProfile userProfile = snapshot.getValue(FirebaseUserProfile.class);
-                        if(ExPoints != null && tvArticleNumber != null){
+                        if (ExPoints != null && tvArticleNumber != null) {
                             ExPoints.setText(userProfile.getPoints());
                             tvArticleNumber.setText(userProfile.getPoints());
                         }
@@ -118,16 +122,24 @@ public class ProfileFragment extends Fragment {
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        Log.v(RECYCLER_VIEW, "fragment pause");
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         firebaseRecyclerAdapter.stopListening();
         unbinder.unbind();
+        Log.v(RECYCLER_VIEW, "fragment destroy");
     }
 
     @Override
     public void onStart() {
         super.onStart();
         // firebaseRecyclerAdapter.startListening();
+        Log.v(RECYCLER_VIEW, "fragment start");
     }
 
     private void fetch() {
@@ -161,23 +173,28 @@ public class ProfileFragment extends Fragment {
                         Toast.makeText(getContext(), "AWSM", Toast.LENGTH_SHORT).show();
                     }
                 });
+                Log.v(RECYCLER_VIEW, "bind view holder");
             }
 
             @NonNull
             @Override
             public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+                Log.v(RECYCLER_VIEW, "create view holder");
                 View view = (View) LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.profile_row_layout, viewGroup, false);
                 return new ViewHolder(view);
             }
         };
-
         firebaseRecyclerAdapter.startListening();
         rvProfiles.setAdapter(firebaseRecyclerAdapter);
     }
 
-    @OnClick(R.id.settings)
-    public void onViewClicked() {
-        startActivity(new Intent(getActivity(), Settings.class));
+    @OnClick({R.id.settings})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.settings:
+                startActivity(new Intent(getActivity(), Settings.class));
+                break;
+        }
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

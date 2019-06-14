@@ -15,11 +15,28 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center_horizontal"
-        android:visibility="gone">
+        android:visibility="gone"
+        >
+        <TextView
+        android:text="Welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:layout_margin="5dp"
+        android:fontFamily="@font/nunito_bold"/>
+
+        <TextView
+            android:text="Fill relevant information to get started"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_semibold"
+            android:layout_margin="5dp"/>
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Display Name">
+            android:layout_margin="5dp"
+            android:hint="Enter Display Name">
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/etDisplayName"
                 android:layout_width="match_parent"
@@ -72,16 +89,20 @@
             android:id="@+id/tvLanguageChosen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:textSize="14sp"
+            android:text="Tap on flag to choose language"
             />
 
         <Button
             android:id="@+id/submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="submit"
-            android:background="@drawable/ic_upload_button"
-            android:textColor="@color/white"/>
+            android:text="Get Started"
+            android:padding="10dp"
+            android:paddingHorizontal="15dp"
+            style="?upload_button"
+            android:textColor="@color/white"
+            android:layout_margin="30dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -103,7 +124,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Getting Things In Place..."
-            android:textColor="@color/colorAccent"
+            android:textColor="?colorAccent"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             />
 

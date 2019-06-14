@@ -12,12 +12,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -80,7 +81,6 @@ public class ArchiveFragment extends Fragment {
         transition = (ViewGroup) view.findViewById(R.id.transitionContainer);
         hideLists();
         databaseReference = Constants.DATABASE_BASE_REFERENCE.child(Constants.language);
-
         return view;
     }
 
@@ -90,7 +90,7 @@ public class ArchiveFragment extends Fragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.btCulture, R.id.btHistory, R.id.btA1, R.id.btA2, R.id.btB1, R.id.btB2})
+    @OnClick({R.id.btCulture, R.id.btHistory, R.id.btA1, R.id.btA2, R.id.btB1, R.id.btB2, R.id.btArchive})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btCulture:
@@ -116,6 +116,9 @@ public class ArchiveFragment extends Fragment {
             case R.id.btB2:
                 hideLists();
                 displayList(databaseReference.child("B2"), lvB2);
+                break;
+            case R.id.btArchive:
+                hideLists();
                 break;
         }
     }
@@ -153,6 +156,7 @@ public class ArchiveFragment extends Fragment {
                 if (getActivity() != null) {
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, uploads);
                     listView.setAdapter(adapter);
+                    setListViewHeightBasedOnChildren(listView);
                 }
             }
 
@@ -174,6 +178,31 @@ public class ArchiveFragment extends Fragment {
         lvA2.setVisibility(View.GONE);
         lvB1.setVisibility(View.GONE);
         lvB2.setVisibility(View.GONE);
+    }
 
+    public static void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) return;
+        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(),
+                View.MeasureSpec.UNSPECIFIED);
+        int totalHeight = 0;
+        View view = null;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            view = listAdapter.getView(i, view, listView);
+            if (i == 0) view.setLayoutParams(new
+                    ViewGroup.LayoutParams(desiredWidth,
+                    ViewGroup.LayoutParams.WRAP_CONTENT));
+
+            view.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+            totalHeight += view.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+
+        params.height = totalHeight + (listView.getDividerHeight() *
+                (listAdapter.getCount() - 1));
+
+        listView.setLayoutParams(params);
+        listView.requestLayout();
     }
 }

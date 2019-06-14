@@ -3,27 +3,34 @@
     android:id="@+id/transitionContainer"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     tools:context=".fragments.ArchiveFragment"
     android:layout_margin="10dp">
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+    <TextView
+        android:id="@+id/btArchive"
+        android:text="Archive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:fontFamily="@font/nunito_bold"
+        android:layout_margin="5dp"/>
+
     <Button
         android:id="@+id/btCulture"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Culture"
-        android:gravity="left"
-        style="@style/archiveButton"/>
+        style="?archive_button"/>
+
 
     <ListView
         android:id="@+id/lvCulture"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:background="#7FFFFFFF"
         android:visibility="gone"/>
 
     <Button
@@ -31,15 +38,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="History"
-        android:gravity="left"
-        style="@style/archiveButton"/>
+        style="?archive_button"/>
 
     <ListView
         android:id="@+id/lvHistory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:background="#7FFFFFFF"
         android:visibility="gone"/>
 
     <Button
@@ -47,15 +51,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="A1"
-        android:gravity="left"
-        style="@style/archiveButton"/>
+        style="?archive_button"/>
 
     <ListView
         android:id="@+id/lvA1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:background="#7FFFFFFF"
         android:visibility="gone"/>
 
     <Button
@@ -63,45 +64,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="A2"
-        android:gravity="left"
-        style="@style/archiveButton"/>
+        style="?archive_button"/>
 
     <ListView
         android:id="@+id/lvA2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:background="#7FFFFFFF"
         android:visibility="gone"/>
     <Button
         android:id="@+id/btB1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="B1"
-        android:gravity="left"
-        style="@style/archiveButton"/>
+        style="?archive_button"/>
 
     <ListView
         android:id="@+id/lvB1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:background="#7FFFFFFF"
         android:visibility="gone"/>
     <Button
         android:id="@+id/btB2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="B2"
-        android:gravity="left"
-        style="@style/archiveButton"/>
+        style="?archive_button"/>
 
     <ListView
         android:id="@+id/lvB2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:background="#7FFFFFFF"
         android:visibility="gone"/>
 </LinearLayout>
 </ScrollView>

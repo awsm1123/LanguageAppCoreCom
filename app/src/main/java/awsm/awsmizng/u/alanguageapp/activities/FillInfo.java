@@ -102,7 +102,26 @@ public class FillInfo extends AppCompatActivity {
                     break;
         }
 
-        editTextWatcher();
+        etDisplayName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!etDisplayName.getText().toString().isEmpty()) {
+                    submit.setEnabled(true);
+                } else {
+                    submit.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     private void queryFirebase(){
@@ -131,7 +150,6 @@ public class FillInfo extends AppCompatActivity {
                     TransitionManager.beginDelayedTransition(transiion);
                     llProgress.setVisibility(View.GONE);
                     llForm.setVisibility(View.VISIBLE);
-                    /*TODO add welcome message to form*/
                 }
             }
 
@@ -188,34 +206,11 @@ public class FillInfo extends AppCompatActivity {
         final FirebaseUserProfile roomUserProfile =  new FirebaseUserProfile(Constants.uploaderID,
                 Constants.uploaderName,
                 Constants.language,
-                Constants.LIGHT_THEME);
+                Constants.DARK_THEME);
         AppExecutors.getInstance().diskIO().execute(new Runnable() {
             @Override
             public void run() {
                 userDatabase.userDao().insertUser(roomUserProfile);
-            }
-        });
-    }
-
-    private void editTextWatcher(){
-        etDisplayName.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (!etDisplayName.getText().toString().isEmpty()) {
-                    submit.setEnabled(true);
-                } else {
-                    etDisplayName.setEnabled(false);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
             }
         });
     }

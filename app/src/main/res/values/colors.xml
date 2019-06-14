@@ -24,7 +24,7 @@
     <color name="DarkcolorPrimaryDark">#404D9E</color>
     <color name="DarkcolorAccent">#9D7AFF</color>
     <color name="bottomNavDark">#1E1E1E</color>
-
+    <color name="DarkprimaryText">#E4E4E4</color>
     <color name="d_button_background_light">#4E61CE</color>
     <color name="d_button_background_dark">#4758BB</color>
 </resources>
