@@ -1,8 +1,11 @@
 package awsm.awsmizng.u.alanguageapp.helper;
 
+import android.app.Activity;
 import android.app.IntentService;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
+import android.os.ResultReceiver;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -19,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -41,6 +45,7 @@ public class UploadArticlesService extends IntentService {
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
 
+
         Log.v(LOG_INTENT, "started");
         storageReference = FirebaseStorage.getInstance().getReference();
         databaseReference = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOAD_ARTICLES);
@@ -51,6 +56,7 @@ public class UploadArticlesService extends IntentService {
         Uri data = intent.getData();
         final String fileName = intent.getStringExtra("fileName");
         final String theme = intent.getStringExtra("theme");
+        final ResultReceiver rec = intent.getParcelableExtra("receiver");
 
         StorageReference sRef = storageReference.child(Constants.language).child(Constants.STORAGE_PATH_UPLOADS + fileName + UUID.randomUUID() + ".pdf");
         sRef.putFile(data)
@@ -101,16 +107,26 @@ public class UploadArticlesService extends IntentService {
                             }
                         });
 
+                        Bundle bundle = new Bundle();
+                        bundle.putString("resultValue", fileName + " uploaded successfully");
+                        bundle.putString("uploadProgress", "success");
+                        // Here we call send passing a resultCode and the bundle of extras
+                        rec.send(Activity.RESULT_OK, bundle);
+
                        /*  TransitionManager.beginDelayedTransition(transitionsContainer);
                         readyUIforInput();
                         tvUploadStatus.setText("File Uploaded Successfully"); */
                     }
                 })
-               /*  .addOnFailureListener(new OnFailureListener() {
+               .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception exception) {
-                        tvUploadStatus.setText("Failure To Upload File");
-                        Toast.makeText(getContext(), exception.getMessage(), Toast.LENGTH_LONG).show();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("resultValue", "Failure To Upload File");
+                        bundle.putString("uploadProgress", "failure");
+                        rec.send(Activity.RESULT_OK, bundle);
+                      //  tvUploadStatus.setText("Failure To Upload File");
+                       // Toast.makeText(getContext(), exception.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 })
                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -118,12 +134,17 @@ public class UploadArticlesService extends IntentService {
                     @Override
                     public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                         double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-                        tvUploadStatus.setText((int) progress + "% Uploading...");
+                        Bundle bundle = new Bundle();
+                        bundle.putString("resultValue", (int) progress + "% Uploaded...");
+                        bundle.putString("uploadProgress", "uploading");
+                        bundle.putInt("progress", (int) progress);
+                        rec.send(Activity.RESULT_OK, bundle);
+                       // tvUploadStatus.setText((int) progress + "% Uploading...");
                     }
-                })*/
+                })
         ;
 
-        Log.v(LOG_INTENT, "uploaded");
+
     }
 
     @Override

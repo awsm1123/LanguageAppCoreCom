@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
@@ -41,6 +42,8 @@ import java.util.Date;
 import java.util.UUID;
 
 import awsm.awsmizng.u.alanguageapp.R;
+import awsm.awsmizng.u.alanguageapp.helper.MyReceiver;
+import awsm.awsmizng.u.alanguageapp.helper.NotificationBuilder;
 import awsm.awsmizng.u.alanguageapp.helper.UploadArticlesService;
 import awsm.awsmizng.u.alanguageapp.models.FirebaseUserProfile;
 import awsm.awsmizng.u.alanguageapp.models.Upload;
@@ -63,6 +66,8 @@ public class UploadArticlesFragment extends Fragment{
     public static String fileName, theme = null;
     private OnFragmentInteractionListener mListener;
     static String uploads;
+
+    public MyReceiver myReceiver;
 
     @BindView(R.id.etFileName)
     TextInputEditText etFileName;
@@ -98,6 +103,7 @@ public class UploadArticlesFragment extends Fragment{
         databaseReference2 = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADERS);
 
         transitionsContainer = (ViewGroup) view.findViewById(R.id.transitionContainer);
+
         etFileName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -134,6 +140,7 @@ public class UploadArticlesFragment extends Fragment{
             }
         });
 
+        setupServiceReceiver();
         return view;
     }
 
@@ -173,21 +180,41 @@ public class UploadArticlesFragment extends Fragment{
 
     private void uploadFile(Uri data) {
 
-        TransitionManager.beginDelayedTransition(transitionsContainer);
+     /* TransitionManager.beginDelayedTransition(transitionsContainer);
         UploadProgress.setVisibility(View.VISIBLE);
         etContainer.setVisibility(View.GONE);
         etFileName.setVisibility(View.GONE);
         spinner.setVisibility(View.GONE);
-        btUpload.setVisibility(View.GONE);
+        btUpload.setVisibility(View.GONE); */
 
         Intent uploadIntent = new Intent(getContext(), UploadArticlesService.class);
         uploadIntent.setData(data)
         .putExtra("fileName", fileName)
-        .putExtra("theme", theme);
+        .putExtra("theme", theme)
+        .putExtra("receiver", myReceiver);
 
         getActivity().startService(uploadIntent);
+        readyUIforInput();
+    }
 
-
+    public void setupServiceReceiver() {
+        myReceiver = new MyReceiver(new Handler());
+        myReceiver.setReceiver(new MyReceiver.Receiver() {
+            @Override
+            public void onReceiveResult(int resultCode, Bundle resultData) {
+                String resultValue = resultData.getString("resultValue");
+                String uploadProgress = resultData.getString("uploadProgress");
+                if(resultValue.equals("File Uploaded Successfully")){
+                    NotificationBuilder.uploadArticleNotification(getContext(), fileName, resultValue);
+                } else if(uploadProgress.equals("uploading")){
+                    NotificationBuilder.uploadArticleNotificationProgress(getContext(), fileName, resultValue, resultData.getInt("progress"));
+                }
+                else{
+                    NotificationBuilder.uploadArticleNotification(getContext(), fileName, resultValue);
+                }
+                tvUploadStatus.setText(resultValue);
+            }
+        });
     }
 
     private void readyUIforInput() {

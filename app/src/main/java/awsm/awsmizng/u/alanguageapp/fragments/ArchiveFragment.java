@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.transition.TransitionManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -146,7 +147,6 @@ public class ArchiveFragment extends Fragment {
                 }
 
                 String[] uploads = new String[uploadList.size()];
-
                 for (int i = 0; i < uploads.length; i++) {
                     uploads[i] = uploadList.get(i).getName();
                 }
@@ -154,7 +154,8 @@ public class ArchiveFragment extends Fragment {
                 //displaying it to list
 
                 if (getActivity() != null) {
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, uploads);
+                    ArrayAdapter <String> adapter;
+                    adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, uploads);
                     listView.setAdapter(adapter);
                     setListViewHeightBasedOnChildren(listView);
                 }
