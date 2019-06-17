@@ -60,7 +60,7 @@ import static android.app.Activity.RESULT_OK;
  * A simple {@link Fragment} subclass.
  */
 public class UploadArticlesFragment extends Fragment{
-
+    Context context = null;
     StorageReference storageReference;
     DatabaseReference databaseReference, databaseReference2;
     public static String fileName, theme = null;
@@ -97,6 +97,7 @@ public class UploadArticlesFragment extends Fragment{
         unbinder = ButterKnife.bind(this, view);
 
         readyUIforInput();
+        context = getContext();
 
         storageReference = FirebaseStorage.getInstance().getReference();
         databaseReference = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADS);
@@ -204,15 +205,18 @@ public class UploadArticlesFragment extends Fragment{
             public void onReceiveResult(int resultCode, Bundle resultData) {
                 String resultValue = resultData.getString("resultValue");
                 String uploadProgress = resultData.getString("uploadProgress");
-                if(resultValue.equals("File Uploaded Successfully")){
-                    NotificationBuilder.uploadArticleNotification(getContext(), fileName, resultValue);
-                } else if(uploadProgress.equals("uploading")){
-                    NotificationBuilder.uploadArticleNotificationProgress(getContext(), fileName, resultValue, resultData.getInt("progress"));
+
+                if(uploadProgress.equals("uploading")){
+                    NotificationBuilder.uploadArticleNotificationProgress(context, fileName, resultValue, resultData.getInt("progress"));
                 }
                 else{
-                    NotificationBuilder.uploadArticleNotification(getContext(), fileName, resultValue);
+                    NotificationBuilder.uploadArticleNotification(context, fileName, resultValue);
                 }
-                tvUploadStatus.setText(resultValue);
+                
+                if(tvUploadStatus != null){
+                    tvUploadStatus.setText(resultValue);
+                }
+
             }
         });
     }
