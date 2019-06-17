@@ -7,9 +7,10 @@ import java.text.SimpleDateFormat;
 
 public class Constants {
     public static final String STORAGE_PATH_UPLOADS = "uploads/";
+    public static final String DATABASE_PATH_UPLOAD_ARTICLES = "uploads/articles";
     public static final String DATABASE_PATH_UPLOADS = "uploads";
     public static final String DATABASE_PATH_UPLOADERS = "uploaders";
-    public static final DatabaseReference DATABASE_BASE_REFERENCE = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADS);
+    public static final DatabaseReference DATABASE_BASE_REFERENCE = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOAD_ARTICLES);
 
     public static final String READ_PERMISSION_LOG_TAG = "Read Permission";
     public static final String ROOM_DATABASE_LOG_TAG = "MY ROOM DATABASE";

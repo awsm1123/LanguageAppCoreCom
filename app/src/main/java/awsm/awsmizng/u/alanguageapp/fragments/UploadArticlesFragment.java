@@ -41,6 +41,7 @@ import java.util.Date;
 import java.util.UUID;
 
 import awsm.awsmizng.u.alanguageapp.R;
+import awsm.awsmizng.u.alanguageapp.helper.UploadArticlesService;
 import awsm.awsmizng.u.alanguageapp.models.FirebaseUserProfile;
 import awsm.awsmizng.u.alanguageapp.models.Upload;
 import awsm.awsmizng.u.alanguageapp.statics.Constants;
@@ -55,7 +56,7 @@ import static android.app.Activity.RESULT_OK;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class UploadArticlesFragment extends Fragment {
+public class UploadArticlesFragment extends Fragment{
 
     StorageReference storageReference;
     DatabaseReference databaseReference, databaseReference2;
@@ -179,75 +180,13 @@ public class UploadArticlesFragment extends Fragment {
         spinner.setVisibility(View.GONE);
         btUpload.setVisibility(View.GONE);
 
-        StorageReference sRef = storageReference.child(Constants.STORAGE_PATH_UPLOADS + fileName + UUID.randomUUID() + ".pdf");
-        sRef.putFile(data)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @SuppressWarnings("VisibleForTests")
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        taskSnapshot.getMetadata().getReference().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                            @Override
-                            public void onSuccess(Uri uri) {
-                                Upload upload = new Upload(
-                                        fileName,
-                                        uri.toString(),
-                                        Constants.uploaderName,
-                                        Constants.uploaderID,
-                                        Constants.sdf.format(new Date())
-                                );
-                                databaseReference.child(Constants.language)
-                                        .child(theme)
-                                        .child(databaseReference.push().getKey())
-                                        .setValue(upload);
+        Intent uploadIntent = new Intent(getContext(), UploadArticlesService.class);
+        uploadIntent.setData(data)
+        .putExtra("fileName", fileName)
+        .putExtra("theme", theme);
 
-                                Query ref = databaseReference2.orderByChild("userID").equalTo(Constants.uploaderID);
-                                ref.addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        if (dataSnapshot.exists()) {
-                                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                                                FirebaseUserProfile userProfile = snapshot.getValue(FirebaseUserProfile.class);
-                                                uploads = userProfile.getPoints();
-                                            }
-                                        }
-                                    }
+        getActivity().startService(uploadIntent);
 
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                    }
-                                });
-
-                                int updateUpload = 0;
-                                if (!TextUtils.isEmpty(uploads) && TextUtils.isDigitsOnly(uploads)) {
-                                    updateUpload = Integer.parseInt(uploads) + 1;
-                                }
-
-                                databaseReference2.child(Constants.uploaderID).child("points").setValue(updateUpload+"");
-                                databaseReference2.child(Constants.uploaderID).child("lastActive").setValue(Constants.sdf.format(new Date()));
-                            }
-                        });
-
-                        TransitionManager.beginDelayedTransition(transitionsContainer);
-                        readyUIforInput();
-                        tvUploadStatus.setText("File Uploaded Successfully");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        tvUploadStatus.setText("Failure To Upload File");
-                        Toast.makeText(getContext(), exception.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                })
-                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                    @SuppressWarnings("VisibleForTests")
-                    @Override
-                    public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                        double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-                        tvUploadStatus.setText((int) progress + "% Uploading...");
-                    }
-                });
 
     }
 

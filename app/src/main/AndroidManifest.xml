@@ -25,6 +25,9 @@
         <activity
             android:name=".activities.MainActivity"
             android:windowSoftInputMode="stateHidden|adjustPan"/>
+
+        <service android:name=".helper.UploadArticlesService"
+            android:label="UploadArticlesService"/>
     </application>
 
 </manifest>
