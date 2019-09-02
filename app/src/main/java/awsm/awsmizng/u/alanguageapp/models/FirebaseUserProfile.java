@@ -15,7 +15,7 @@ public class FirebaseUserProfile {
     public String language;
     public int theme;
     @Ignore
-    public String points;
+    public int points;
     @Ignore
     public String lastActive;
 
@@ -31,7 +31,7 @@ public class FirebaseUserProfile {
     public FirebaseUserProfile(){}
 
     @Ignore
-    public FirebaseUserProfile(String userName, String language, String userID, String points, String lastActive) {
+    public FirebaseUserProfile(String userName, String language, String userID, int points, String lastActive) {
         this.userName = userName;
         this.language = language;
         this.userID = userID;
@@ -63,11 +63,11 @@ public class FirebaseUserProfile {
         this.userID = userID;
     }
 
-    public String getPoints() {
+    public int getPoints() {
         return points;
     }
 
-    public void setPoints(String points) {
+    public void setPoints(int points) {
         this.points = points;
     }
 

@@ -91,17 +91,22 @@ public class Settings extends AppCompatActivity {
         recreate();
     }
 
-    @OnClick({R.id.swTheme, R.id.btAbout, R.id.btFeedback, R.id.btLogOut})
+    @OnClick({R.id.swTheme, R.id.btAbout, R.id.btFeedback, R.id.btLogOut, R.id.btBug})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.swTheme:
                 break;
             case R.id.btAbout:
+                startActivity(new Intent(getApplication(), About.class));
                 break;
             case R.id.btFeedback:
+                startActivity(new Intent(getApplication(), Report.class).putExtra("redirect", 0));
                 break;
             case R.id.btLogOut:
                 logout();
+                break;
+            case R.id.btBug:
+                startActivity(new Intent(getApplication(), Report.class).putExtra("redirect", 1));
                 break;
         }
     }

@@ -85,8 +85,8 @@ public class ProfileFragment extends Fragment {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         FirebaseUserProfile userProfile = snapshot.getValue(FirebaseUserProfile.class);
                         if (ExPoints != null && tvArticleNumber != null) {
-                            ExPoints.setText(userProfile.getPoints());
-                            tvArticleNumber.setText(userProfile.getPoints());
+                            ExPoints.setText(userProfile.getPoints() + "");
+                            tvArticleNumber.setText(userProfile.getPoints() + "");
                         }
 
                     }

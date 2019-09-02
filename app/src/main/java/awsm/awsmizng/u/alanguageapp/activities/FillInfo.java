@@ -65,6 +65,11 @@ public class FillInfo extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (Constants.theme == Constants.LIGHT_THEME) {
+            setTheme(R.style.ThemeLight);
+        } else if (Constants.theme == Constants.DARK_THEME) {
+            setTheme(R.style.ThemeDark);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fill_info);
         ButterKnife.bind(this);
@@ -189,7 +194,7 @@ public class FillInfo extends AppCompatActivity {
                 FirebaseUserProfile firebaseUserProfile = new FirebaseUserProfile(Constants.uploaderName,
                         Constants.language,
                         Constants.uploaderID,
-                        "0",
+                        0,
                         Constants.sdf.format(new Date())
                 );
                 databaseReference2.child(Constants.uploaderID).setValue(firebaseUserProfile);

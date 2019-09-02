@@ -14,4 +14,7 @@
     </string-array>
 
     <string name="langPref">You Chose&#160;</string>
+
+    <string name="about">This app serves the Core Com of SaFL to upload articles, reading material and quizzes for the main SaFL app.
+    </string>
 </resources>

@@ -37,7 +37,8 @@ public class UploadArticlesService extends IntentService {
 
     StorageReference storageReference;
     DatabaseReference databaseReference, databaseReference2;
-    static String uploads, LOG_INTENT="UPLOADING";
+    static String LOG_INTENT="UPLOADING";
+    int uploads;
 
     public  UploadArticlesService(){
         super("UploadArticlesService");
@@ -55,10 +56,11 @@ public class UploadArticlesService extends IntentService {
 
         Uri data = intent.getData();
         final String fileName = intent.getStringExtra("fileName");
+        final String extension = intent.getStringExtra("extension");
         final String theme = intent.getStringExtra("theme");
         final ResultReceiver rec = intent.getParcelableExtra("receiver");
 
-        StorageReference sRef = storageReference.child(Constants.language).child(Constants.STORAGE_PATH_UPLOADS + fileName + UUID.randomUUID() + ".pdf");
+        StorageReference sRef = storageReference.child(Constants.language).child(Constants.STORAGE_PATH_UPLOADS + fileName + UUID.randomUUID() + "." + extension);
         sRef.putFile(data)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @SuppressWarnings("VisibleForTests")
@@ -87,6 +89,8 @@ public class UploadArticlesService extends IntentService {
                                             for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                                                 FirebaseUserProfile userProfile = snapshot.getValue(FirebaseUserProfile.class);
                                                 uploads = userProfile.getPoints();
+                                                databaseReference2.child(Constants.uploaderID).child("points").setValue(uploads + 1);
+                                                databaseReference2.child(Constants.uploaderID).child("lastActive").setValue(Constants.sdf.format(new Date()));
                                             }
                                         }
                                     }
@@ -97,13 +101,17 @@ public class UploadArticlesService extends IntentService {
                                     }
                                 });
 
-                                int updateUpload = 0;
-                                if (!TextUtils.isEmpty(uploads) && TextUtils.isDigitsOnly(uploads)) {
-                                    updateUpload = Integer.parseInt(uploads) + 1;
-                                }
-
-                                databaseReference2.child(Constants.uploaderID).child("points").setValue(updateUpload+"");
-                                databaseReference2.child(Constants.uploaderID).child("lastActive").setValue(Constants.sdf.format(new Date()));
+//                                int updateUpload = 0;
+////                                if (!TextUtils.isEmpty(uploads) && TextUtils.isDigitsOnly(uploads)) {
+////                                    updateUpload = Integer.parseInt(uploads) + 1;
+////                                    Log.v("BLAHBLAH", uploads);
+////                                }
+//
+//                                Log.v("BLAHBLAH", uploads + "");
+//                                updateUpload = uploads + 1;
+//
+//                                databaseReference2.child(Constants.uploaderID).child("points").setValue(updateUpload + 1);
+//                                databaseReference2.child(Constants.uploaderID).child("lastActive").setValue(Constants.sdf.format(new Date()));
                             }
                         });
 

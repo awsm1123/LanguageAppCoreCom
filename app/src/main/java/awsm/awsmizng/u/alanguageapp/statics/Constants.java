@@ -9,6 +9,8 @@ public class Constants {
     public static final String STORAGE_PATH_UPLOADS = "uploads/";
     public static final String DATABASE_PATH_UPLOAD_ARTICLES = "uploads/articles";
     public static final String DATABASE_PATH_UPLOADS = "uploads";
+    public static final String DATABASE_PATH_BUGS = "bugs";
+    public static final String DATABASE_PATH_FEEDBACK = "feedback";
     public static final String DATABASE_PATH_UPLOADERS = "uploaders";
     public static final DatabaseReference DATABASE_BASE_REFERENCE = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOAD_ARTICLES);
 
@@ -24,6 +26,9 @@ public class Constants {
     public static String uploaderID = null;
     public static String language = null;
     public static int theme = LIGHT_THEME;
+
+    public static int DISPLAY_WIDTH = 0;
+    public static int DISPLAY_HEIGHT = 0;
 
     public static SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy HH:mm:ss");
 
