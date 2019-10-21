@@ -38,7 +38,7 @@
             android:id="@+id/spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/theme_array"
+            android:entries="@array/german_theme_array"
             android:prompt="@string/theme_prompt"
             android:padding="10dp" />
 

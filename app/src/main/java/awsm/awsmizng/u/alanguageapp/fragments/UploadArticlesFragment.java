@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -34,6 +35,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import awsm.awsmizng.u.alanguageapp.R;
 import awsm.awsmizng.u.alanguageapp.helper.MyReceiver;
@@ -100,6 +104,7 @@ public class UploadArticlesFragment extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_upload_articles, container, false);
         unbinder = ButterKnife.bind(this, view);
 
+        setLanguageSpinner();
         readyUIforInput();
         context = getContext();
 
@@ -157,6 +162,30 @@ public class UploadArticlesFragment extends Fragment {
             ivBottomCardView.setImageResource(R.drawable.dark_upload_bottom_card_view);
         }
         return view;
+    }
+
+    private void setLanguageSpinner() {
+        ArrayAdapter<String> dataAdapter = null;
+        if (Constants.language.equals("GERMAN")) {
+            dataAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, Arrays.asList(getResources().getStringArray(R.array.german_theme_array)));
+        }
+        if (Constants.language.equals("JAPANESE")) {
+            dataAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, Arrays.asList(getResources().getStringArray(R.array.japanese_theme_array)));
+        }
+        if (Constants.language.equals("SANSKRIT")) {
+            dataAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, Arrays.asList(getResources().getStringArray(R.array.sanskrit_theme_array)));
+        }
+        if (Constants.language.equals("SPANISH")) {
+            dataAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, Arrays.asList(getResources().getStringArray(R.array.spanish_theme_array)));
+        }
+        if (Constants.language.equals("FRENCH")) {
+            dataAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, Arrays.asList(getResources().getStringArray(R.array.french_theme_array)));
+        }
+
+        //set the view for the Drop down list
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //set the ArrayAdapter to the spinner
+        spinner.setAdapter(dataAdapter);
     }
 
     @Override

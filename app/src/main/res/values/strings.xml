@@ -4,7 +4,13 @@
 
 
     <string name="theme_prompt">Choose Theme</string>
-    <string-array name="theme_array">
+
+    <string name="langPref">You Chose&#160;</string>
+
+    <string name="about">This app serves the Core Com of SaFL to upload articles, reading material and quizzes for the main SaFL app.
+    </string>
+
+    <string-array name="german_theme_array">
         <item>Culture</item>
         <item>History</item>
         <item>A1</item>
@@ -13,8 +19,37 @@
         <item>B2</item>
     </string-array>
 
-    <string name="langPref">You Chose&#160;</string>
+    <string-array name="spanish_theme_array">
+        <item>Festivals</item>
+        <item>Food</item>
+        <item>A1</item>
+        <item>A2</item>
+        <item>Tourism</item>
+        <item>History</item>
+    </string-array>
 
-    <string name="about">This app serves the Core Com of SaFL to upload articles, reading material and quizzes for the main SaFL app.
-    </string>
+    <string-array name="japanese_theme_array">
+        <item>Culture</item>
+        <item>History</item>
+        <item>N5</item>
+        <item>N4</item>
+    </string-array>
+
+    <string-array name="sanskrit_theme_array">
+        <item>Pravesha</item>
+        <item>Parichaya</item>
+        <item>Shiksha</item>
+        <item>Kovida</item>
+        <item>Language</item>
+        <item>History</item>
+    </string-array>
+
+    <string-array name="french_theme_array">
+        <item>Culture</item>
+        <item>History</item>
+        <item>A1</item>
+        <item>A2</item>
+        <item>B1</item>
+        <item>B2</item>
+    </string-array>
 </resources>

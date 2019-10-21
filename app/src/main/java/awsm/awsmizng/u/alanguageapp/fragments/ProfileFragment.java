@@ -74,7 +74,7 @@ public class ProfileFragment extends Fragment {
         linearLayoutManager = new LinearLayoutManager(getContext());
         rvProfiles.setLayoutManager(linearLayoutManager);
         rvProfiles.setHasFixedSize(true);
-        setIconAndName();
+        setLanguageIconAndName();
 
 
         Query ref = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADERS).orderByChild("userID").equalTo(Constants.uploaderID);
@@ -101,7 +101,7 @@ public class ProfileFragment extends Fragment {
         return view;
     }
 
-    private void setIconAndName() {
+    private void setLanguageIconAndName() {
         if (Constants.language.equals("GERMAN")) {
             icon.setImageResource(R.drawable.germany);
         }
