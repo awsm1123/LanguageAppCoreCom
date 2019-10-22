@@ -36,7 +36,7 @@ public class NotificationBuilder {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, UPLOAD_ARTICLES_CHANNEL)
                 .setColor(ContextCompat.getColor(context, R.color.colorPrimary))
-                .setSmallIcon(R.drawable.settings_icon)
+                .setSmallIcon(R.drawable.ic_parrot_svg)
                 .setContentTitle("Uploading Article")
                 .setContentText(filename)
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(resultValue))
