@@ -3,12 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/tvThemeName"
-        android:text="awsm"
+    <TextView
+        android:id="@+id/tvArticleTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="?archive_button"
-        android:clickable="false" />
-
+        android:text="aayush"
+        android:layout_centerVertical="true"
+        android:padding="10dp" />
 </RelativeLayout>

@@ -88,8 +88,8 @@ public class ProfileFragment extends Fragment {
                             ExPoints.setText(userProfile.getPoints() + "");
                             tvArticleNumber.setText(userProfile.getPoints() + "");
                         }
-
                     }
+                    firebaseRecyclerAdapter.notifyDataSetChanged();
                 }
             }
 

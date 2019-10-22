@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/transitionContainer"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".fragments.ArchiveFragment"
     android:layout_margin="10dp">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+
     <TextView
         android:id="@+id/btArchive"
         android:text="Archive"
@@ -17,14 +14,41 @@
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:fontFamily="@font/nunito_bold"
-        android:layout_margin="5dp"/>
+        android:layout_margin="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvArchive"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btArchive" />
 
-<!--    <Button-->
+    <LinearLayout
+        android:id="@+id/llArticles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/btArchive"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/tvDisplayTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Culture"
+            style="?archive_button"
+            android:drawableRight="@drawable/vector_up_arrow" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvArticles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp" />
+    </LinearLayout>
+
+    <!--    <Button-->
     <!--        android:id="@+id/btCulture"-->
     <!--        android:layout_width="match_parent"-->
     <!--        android:layout_height="wrap_content"-->
@@ -100,5 +124,5 @@
     <!--        android:layout_width="match_parent"-->
     <!--        android:layout_height="wrap_content"-->
     <!--        android:visibility="gone"/>-->
-</LinearLayout>
-</ScrollView>
+
+</RelativeLayout>
